@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
 const MovimentoSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  despesa: { type: String, required: true },
-  modal: { type: String },
+  name: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  despesa: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Despesas",
+    required: true
+  },
+  modal: { type: mongoose.Schema.Types.ObjectId, ref: "Modal", required: true },
   origem: { type: String },
   destino: { type: String },
   descricao: { type: String },
@@ -13,7 +17,7 @@ const MovimentoSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date },
   LastUpdated: { type: String },
-  status: { type: String },
+  status: { type: String, default: "Registrado" },
   latestStatus: { type: Date }
 });
 

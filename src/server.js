@@ -5,8 +5,11 @@ const databaseConfig = require("./config/database");
 class App {
   constructor() {
     this.express = express();
+    this.isDev = process.env.NODE_ENV !== "production";
+
     this.database();
     this.middleware();
+    this.routes();
   }
   middleware() {
     this.express.use(express.json());
